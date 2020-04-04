@@ -7,14 +7,18 @@ import MealDetailScreen from '../screens/MealDetailsScreen';
 
 const Stack = createStackNavigator();
 
-const MealsNavigator = () => {
-  return (
-    <Stack.Navigator initialRouteName="Categories">
-      <Stack.Screen name="Categories" component={CategoriesScreen} />
-      <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
-      <Stack.Screen name="MealDetail" component={MealDetailScreen} />
-    </Stack.Navigator>
-  );
+class MealsNavigator extends React.Component {
+
+  render() {
+    const content =
+      <Stack.Navigator initialRouteName="Categories" >
+        <Stack.Screen name="Categories" component={CategoriesScreen} />
+        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+        <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+      </Stack.Navigator>
+
+    return content;
+  };
 }
 
 export default MealsNavigator;
