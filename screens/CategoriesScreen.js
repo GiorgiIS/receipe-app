@@ -10,7 +10,12 @@ class CategoriesScreen extends React.Component {
             <View style={styles.greedItemContainer}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.navigation.navigate({ name: 'CategoryMeals' })
+                        this.props.navigation.navigate({ 
+                            name: 'CategoryMeals', 
+                            params: {
+                                categoryId: itemData.item.id
+                            }
+                        })
                     }}>
                     <View style={styles.greedItem}>
                         <Text>{itemData.item.title}</Text>
