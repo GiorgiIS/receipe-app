@@ -3,15 +3,15 @@ import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-class CategoriesScreen extends React.Component {
-    
-    renderGridItem = (itemData) => {
+const CategoriesScreen = (props) => {
+
+    const renderGridItem = (itemData) => {
         return (
             <View style={styles.greedItemContainer}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.navigation.navigate({ 
-                            name: 'CategoryMeals', 
+                        props.navigation.navigate({
+                            name: 'CategoryMeals',
                             params: {
                                 categoryId: itemData.item.id
                             }
@@ -25,29 +25,22 @@ class CategoriesScreen extends React.Component {
         );
     };
 
-    render() {
-       
-        // todo: this code should not be on render
-        // it must execute only once
-       
-        this.props.navigation.setOptions({ 
-            headerTitle: 'Meal Categories'
-        })
+    props.navigation.setOptions({
+        headerTitle: 'Meal Categories'
+    })
 
-        return (
-            // every FlatList needs key. if the name of the key is
-            // key or id then keyExtractor is not need, I just wrote it
-            // just not to forget.
-            <FlatList
-                keyExtractor={(item, index) => item.id}
-                data={CATEGORIES}
-                numColumns={2}
-                renderItem={this.renderGridItem} />
-        );
-    }
+    return (
+        // every FlatList needs key. if the name of the key is
+        // key or id then keyExtractor is not need, I just wrote it
+        // just not to forget.
+        <FlatList
+            keyExtractor={(item, index) => item.id}
+            data={CATEGORIES}
+            numColumns={2}
+            renderItem={renderGridItem} />
+    );
 }
 
-CategoriesScreen.prototype.navigationOptions = { headerTitle: '123'};
 
 const styles = StyleSheet.create({
     screen: {
