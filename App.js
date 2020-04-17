@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MealsNavigator from './navigation/MealsNavigator';
+import {useScreens } from 'react-native-screens';
 
-class App extends React.Component {
-  render() {
+// This will be effective in larger applications
+// This will use default screens for android and ios, that will be a bit faster
 
-    const appContent =
+useScreens();
+
+export default function App() {
+
+  return(
       <NavigationContainer>
         <MealsNavigator></MealsNavigator>
-      </NavigationContainer>;
-
-    return appContent;
-  }
+      </NavigationContainer>
+  )
 }
-
-export default App;

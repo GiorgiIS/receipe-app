@@ -8,8 +8,8 @@ const CategoryMealsScreen = props => {
     const selectedCategory = CATEGORIES.find(c => c.id === categoryId);
    
     props.navigation.setOptions({ 
-        headerTitle: selectedCategory.title,
-        headerStyle:{ backgroundColor:'green' }, headerTintColor: '#fff',})
+        headerTitle: selectedCategory.title
+    })
    
     return (
         <View style={styles.screen}>
@@ -18,6 +18,9 @@ const CategoryMealsScreen = props => {
             <Button
                 title='Go to meal details'
                 onPress={() => { props.navigation.navigate('MealDetail') }} />
+                <Button
+                title='Go Back'
+                onPress={() => { props.navigation.pop() }} />
         </View>
     );
 }

@@ -31,8 +31,8 @@ class CategoriesScreen extends React.Component {
         // it must execute only once
        
         this.props.navigation.setOptions({ 
-            headerTitle: 'Meal Categories',
-            headerStyle:{ backgroundColor:'green' }, headerTintColor: '#fff',})
+            headerTitle: 'Meal Categories'
+        })
 
         return (
             // every FlatList needs key. if the name of the key is

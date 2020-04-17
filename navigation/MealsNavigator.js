@@ -5,16 +5,21 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailsScreen';
 
+const defaultOptions = {
+  headerStyle: { backgroundColor: 'green' }, headerTintColor: '#fff'
+}
+
 const Stack = createStackNavigator();
 
 class MealsNavigator extends React.Component {
 
+  // todo: map defaultOptions on creating stack navigator above.
   render() {
     const content =
       <Stack.Navigator initialRouteName="Categories" >
-        <Stack.Screen name="Categories" component={CategoriesScreen} />
-        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
-        <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+        <Stack.Screen name="Categories" component={CategoriesScreen} options={defaultOptions} />
+        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} options={defaultOptions}/>
+        <Stack.Screen name="MealDetail" component={MealDetailScreen} options={defaultOptions}/>
       </Stack.Navigator>
 
     return content;
