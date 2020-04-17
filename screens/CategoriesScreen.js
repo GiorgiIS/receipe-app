@@ -1,26 +1,34 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList, Platform, TouchableNativeFeedback } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const CategoriesScreen = (props) => {
+
+    const onPressHandler = (itemData) => {
+        props.navigation.navigate({
+            name: 'CategoryMeals',
+            params: {
+                categoryId: itemData.item.id
+            }
+        })
+    };
+
+    let TouchableComponent = TouchableOpacity;
+
+    if (Platform.OS === 'android' && Platform.Version >= 21) {
+        TouchableComponent = TouchableNativeFeedback;
+    }
 
     const renderGridItem = (itemData) => {
         return (
             <View style={styles.greedItemContainer}>
-                <TouchableOpacity
-                    onPress={() => {
-                        props.navigation.navigate({
-                            name: 'CategoryMeals',
-                            params: {
-                                categoryId: itemData.item.id
-                            }
-                        })
-                    }}>
+                <TouchableComponent
+                    onPress={() => onPressHandler(itemData)} >
                     <View style={styles.greedItem}>
                         <Text>{itemData.item.title}</Text>
                     </View>
-                </TouchableOpacity>
+                </TouchableComponent>
             </View >
         );
     };
@@ -52,11 +60,23 @@ const styles = StyleSheet.create({
     greedItem: {
         flex: 1,
         margin: 15,
-        height: 150
+        padding: 15,
+        height: 150,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        backgroundColor: 'lightgreen',
+        borderRadius: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.26,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 10,
+        elevation: 3,
     },
 
     greedItemContainer: {
-        flex: 1
+        flex: 1,
+        overflow: 'hidden',
+        borderRadius: 10
     }
 });
 
