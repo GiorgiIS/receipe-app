@@ -1,32 +1,43 @@
 
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailsScreen';
+import FavoritesScreen from '../screens/FavoritesScreen';
 
 const defaultOptions = {
   headerStyle: { backgroundColor: 'green' }, headerTintColor: '#fff'
 }
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-class MealsNavigator extends React.Component {
+const MealsNavigator = props => {
 
-  // todo: map defaultOptions on creating stack navigator above.
-  render() {
-    const content =
-      <Stack.Navigator initialRouteName="Categories" >
-        <Stack.Screen name="Categories" component={CategoriesScreen} options={defaultOptions} />
-        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} options={defaultOptions}/>
-        <Stack.Screen name="MealDetail" component={MealDetailScreen} options={defaultOptions}/>
-      </Stack.Navigator>
+  const content =
+    <Stack.Navigator initialRouteName="Categories" >
+      <Stack.Screen name="Categories" component={CategoriesScreen} options={defaultOptions} />
+      <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} options={defaultOptions} />
+      <Stack.Screen name="MealDetail" component={MealDetailScreen} options={defaultOptions} />
+    </Stack.Navigator>
 
-    return content;
-  };
+  return content;
 }
 
-export default MealsNavigator;
+const MealsFabTabNavigator = props => {
+
+  const content =
+    <Tab.Navigator initialRouteName="Meals" >
+      <Tab.Screen name="Meals" component={MealsNavigator} options={defaultOptions} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} options={defaultOptions} />
+    </Tab.Navigator>
+
+  return content;
+}
+
+export default MealsFabTabNavigator;
 
 
 //   Here is some useful information about navigation methods.
