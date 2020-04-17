@@ -1,18 +1,21 @@
 
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import Colors from '../constans/Colors';
 
 const defaultOptions = {
   headerStyle: { backgroundColor: 'green' }, headerTintColor: '#fff'
 }
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const MealsNavigator = props => {
 
@@ -26,12 +29,35 @@ const MealsNavigator = props => {
   return content;
 }
 
+const favTabOptions = {
+  tabBarIcon: (tabInformation) => {
+    return <Ionicons name='ios-star'
+      size={25}
+      color={tabInformation.color}
+    />
+  }
+}
+
+const mealsTabOptions = {
+  tabBarIcon: (tabInformation) => {
+    return <Ionicons name='ios-restaurant'
+      size={25}
+      color={tabInformation.color}
+    />
+  }
+}
+
 const MealsFabTabNavigator = props => {
 
   const content =
-    <Tab.Navigator initialRouteName="Meals" >
-      <Tab.Screen name="Meals" component={MealsNavigator} options={defaultOptions} />
-      <Tab.Screen name="Favorites" component={FavoritesScreen} options={defaultOptions} />
+    <Tab.Navigator
+      initialRouteName="Meals"
+      activeColor={Colors.accentColor}
+      inactiveColor={Colors.primaryColor}
+      barStyle={{ backgroundColor: 'white' }}
+    >
+      <Tab.Screen name="Meals" component={MealsNavigator} options={mealsTabOptions} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} options={favTabOptions} />
     </Tab.Navigator>
 
   return content;

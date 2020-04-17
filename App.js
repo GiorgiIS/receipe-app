@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import MealsFabTabNavigator from './navigation/MealsNavigator';
+import MealsFavTabNavigator from './navigation/MealsNavigator';
 import { enableScreens } from 'react-native-screens';
 
 // This will be effective in larger applications
@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MealsFabTabNavigator></MealsFabTabNavigator>
+      <MealsFavTabNavigator></MealsFavTabNavigator>
     </NavigationContainer>
   )
 }
