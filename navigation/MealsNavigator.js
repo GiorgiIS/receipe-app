@@ -14,7 +14,11 @@ const defaultOptions = {
   headerStyle: { backgroundColor: 'green' }, headerTintColor: '#fff'
 }
 
+// this is navigator of categories meals and details
 const Stack = createStackNavigator();
+
+// this is bottom tab navigator, to swich between meals and favorites
+// meals is first navigator, fovorites screen of favorite meals
 const Tab = createMaterialBottomTabNavigator();
 
 const MealsNavigator = props => {
