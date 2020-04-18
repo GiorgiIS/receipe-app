@@ -94,8 +94,14 @@ const MealsFavTabNavigator = props => {
 const MenuNavigator = props => {
 
   const content =
-    <Menu.Navigator initialRouteName="Meal Categories">
-      <Menu.Screen name="Meal Categories" component={MealsFavTabNavigator} />
+    <Menu.Navigator initialRouteName="Meals"
+      drawerContentOptions={{
+        activeTintColor: '#e91e63',
+        itemStyle: { marginVertical: 15 },
+        labelStyle: { fontWeight: 'bold' }
+      }}
+    >
+      <Menu.Screen name="Meals" component={MealsFavTabNavigator} />
       <Menu.Screen name="Filter" component={FilterStackNavigator} />
     </Menu.Navigator>
 
