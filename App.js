@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import MealsFavTabNavigator from './navigation/MealsNavigator';
 import { enableScreens } from 'react-native-screens';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import mealsReducer from './store/reducers/meals';
+
+import MealsFavTabNavigator from './navigation/MealsNavigator';
+
+
 // This will be effective in larger applications
 // This will use default screens for android and ios, that will be a bit faster
-
 enableScreens();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer
+});
+
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -35,8 +46,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MealsFavTabNavigator></MealsFavTabNavigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MealsFavTabNavigator></MealsFavTabNavigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
