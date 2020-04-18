@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import mealsReducer from './store/reducers/meals';
+import mealsReducer from './store/reducers/mealsReducer';
 
 import MealsFavTabNavigator from './navigation/MealsNavigator';
 
