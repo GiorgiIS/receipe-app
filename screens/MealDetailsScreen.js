@@ -26,6 +26,7 @@ const MealDetailScreen = props => {
 
     const { mealId } = props.route.params;
     const allMeals = useSelector(state => state.meals.allMeals);
+    const isFavorite = useSelector(state => state.meals.favoriteMeals.some(meal => meal.id === mealId));
     const selectedMeal = allMeals.find(meal => meal.id === mealId);
 
     // dispatch hook, that is simple used to dispatch action 
@@ -42,14 +43,14 @@ const MealDetailScreen = props => {
                 <HeaderButtons HeaderButtonComponent={HeaderButton}>
                     <Item
                         title='Favorite'
-                        iconName='ios-star' // can be any icon from @expo/vector-icons
+                        iconName={isFavorite ? 'ios-star' : 'ios-star-outline'} // can be any icon from @expo/vector-icons
                         onPress={() => toggleFavoriteHandler()}
                     />
                 </HeaderButtons>
             )
         });
-      }, [props.navigation, selectedMeal.mealId]);
-    
+    }, [props.navigation, selectedMeal.mealId, isFavorite]);
+
     return (
         <ScrollView>
             <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
