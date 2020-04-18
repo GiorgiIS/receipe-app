@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constans/Colors';
+import { SET_FILTERS, setFilters } from '../store/actions/mealsAction';
 
 const FilterSwitch = props => {
     return (
@@ -27,6 +29,8 @@ const FiltersScreen = props => {
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
 
+    const dispatch = useDispatch();
+
     // useCallback hook allows to wrap a function 
     // that will be cashed and will return memorized version of function.
     // cash will change when dependency is updated:
@@ -37,8 +41,9 @@ const FiltersScreen = props => {
             glutenFree: isGlutenFree,
             lactoseFree: isLactoseFree,
             vegan: isVegan,
-            isVegetarian: isVegetarian
+            vegetarian: isVegetarian
         };
+        dispatch(setFilters(appliedFilters));
     }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
     // after every render I want to save filter
