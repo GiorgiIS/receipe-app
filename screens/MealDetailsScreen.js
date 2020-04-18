@@ -4,14 +4,14 @@ import {
     View,
     Image,
     Text,
-    Button,
     StyleSheet
 } from 'react-native';
+
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import { MEALS } from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
+import { useSelector } from 'react-redux';
 
 const ListItem = props => {
     return (
@@ -23,8 +23,9 @@ const ListItem = props => {
 
 const MealDetailScreen = props => {
 
-    const mealId = props.route.params.mealId;
-    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+    const { mealId } = props.route.params;
+    const allMeals = useSelector(state => state.meals.allMeals);
+    const selectedMeal = allMeals.find(meal => meal.id === mealId);
 
     props.navigation.setOptions({
         headerTitle: selectedMeal.title,
@@ -63,7 +64,7 @@ const MealDetailScreen = props => {
 
 
 const styles = StyleSheet.create({
-    
+
     image: {
         width: '100%',
         height: 200
