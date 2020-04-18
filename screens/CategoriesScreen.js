@@ -1,9 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList, Platform, TouchableNativeFeedback } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
-import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Item, HeaderButtons } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/HeaderButton';
 
 const CategoriesScreen = (props) => {
+
+    props.navigation.setOptions({
+        headerTitle: 'Meal Categories',
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title='Menu'
+                    iconName='ios-menu' // can be any icon from @expo/vector-icons
+                    onPress={() => {
+                        props.navigation.toggleDrawer();;
+                    }}
+                />
+            </HeaderButtons>
+        )
+    })
 
     const onPressHandler = (itemData) => {
         props.navigation.navigate({
@@ -32,10 +49,6 @@ const CategoriesScreen = (props) => {
             </View >
         );
     };
-
-    props.navigation.setOptions({
-        headerTitle: 'Meal Categories'
-    })
 
     return (
         // every FlatList needs key. if the name of the key is
