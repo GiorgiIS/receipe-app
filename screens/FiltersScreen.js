@@ -32,6 +32,7 @@ const FiltersScreen = props => {
     // cash will change when dependency is updated:
     // [isGlutenFree, isLactoseFree, isVegan, isVegetarian]
     const saveFilters = useCallback(() => {
+        console.log('save');
         const appliedFilters = {
             glutenFree: isGlutenFree,
             lactoseFree: isLactoseFree,
@@ -45,7 +46,7 @@ const FiltersScreen = props => {
         navigation.setParams({ save: saveFilters });
     }, [saveFilters]);
 
-    const { save } = props.route.params;
+    const { save } = props.route.params ?? saveFilters;
 
     props.navigation.setOptions({
         headerTitle: 'Filters',
