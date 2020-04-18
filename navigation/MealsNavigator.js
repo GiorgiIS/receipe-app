@@ -13,7 +13,10 @@ import Colors from '../constans/Colors';
 import FiltersScreen from '../screens/FiltersScreen';
 
 const defaultOptions = {
-  headerStyle: { backgroundColor: 'green' }, headerTintColor: '#fff'
+  headerStyle: { backgroundColor: 'green' },
+  headerTintColor: '#fff',
+  headerTitleStyle: { fontFamily: 'open-sans-bold' },
+  headerBackTitleStyle: { fontFamily: 'open-sans-bold' }
 }
 
 const favTabOptions = {
