@@ -47,9 +47,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
         <MealsFavTabNavigator></MealsFavTabNavigator>
-      </NavigationContainer>
     </Provider>
   )
 }

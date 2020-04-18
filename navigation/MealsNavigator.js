@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -111,7 +112,16 @@ const MenuNavigator = props => {
   return content;
 }
 
-export default MenuNavigator;
+const MainNavigator = props => {
+  const content =
+    <NavigationContainer>
+      <MenuNavigator />
+    </NavigationContainer>
+  
+  return content;
+}
+
+export default MainNavigator;
 
 
 //   Here is some useful information about navigation methods.
